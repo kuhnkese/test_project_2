@@ -1,8 +1,6 @@
 
-
 var net = require('net');
 var colors = require('colors');
-var prompt = require('prompt');
 var server = net.createServer();
 
 var sockets = []
@@ -23,7 +21,7 @@ server.on('connection', function(socket) {
         sockets.push(socket);
 // so what im trying to do, i think maybe it should happen around here, is 
 //each time the socket is pushed to another number in the array, it will also grab the next color with the
-// 'shift' array method 
+// 'shift' array method, when i put something like 'socket.shift(color)' here it crashes
 
 
              socket.on('data', function(data) {
