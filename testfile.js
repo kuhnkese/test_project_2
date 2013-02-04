@@ -16,26 +16,31 @@ server.on('connection', function(socket) {
    
 }
     var rcolor = color.pop();
+    socket.write("WHAT UP:".inverse);
+    socket.write((socket.name + ' ')[rcolor]);
 
-    socket.write(("whatup yo" + socket.name)[rcolor]);
 
-
-        console.log("Got a new connection" );
+        console.log("WE GOT ANOTHER ONE:".inverse );
+        console.log((socket.name)[rcolor]);
 
         sockets.push(socket);
 
-
-            socket.on('data', function(data) {
-            console.log('Received'.green + data);
     
 
-        sockets.forEach(function(otherSocket) {
-            otherSocket.write((socket.name + '>> ')[rcolor]);
-            otherSocket.write(data);
+
+            socket.on('data', function(data) {  
+            var ts = Date.now() / 1000;     
+            console.log(ts + ' RECEIVED:'.bold);
+            console.log((socket.name + ": " + data)[rcolor]);
+    
+
+                sockets.forEach(function(otherSocket) {
+                otherSocket.write((socket.name + ': ')[rcolor]);
+                otherSocket.write(data);
 
 
-        });
-    });
+            });
+                 });
 
     socket.on('close', function() {
         console.log('Connection closed');
