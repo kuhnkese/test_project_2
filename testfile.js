@@ -16,8 +16,7 @@ server.on('connection', function(socket) {
    
 }
     var rcolor = color.pop();
-// so this right here is doing it, each time somone logs in it prompts the user in a different color, but it 
-//does not retain this color as they continue chatting
+
     socket.write(("whatup yo" + socket.name)[rcolor]);
 
 
@@ -31,7 +30,9 @@ server.on('connection', function(socket) {
     
 
         sockets.forEach(function(otherSocket) {
-            otherSocket.write(socket.name + '>> ' + data );
+            otherSocket.write((socket.name + '>> ' + data)[rcolor]);
+
+
 
         });
     });
