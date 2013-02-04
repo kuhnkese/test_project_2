@@ -3,7 +3,7 @@ var colors = require('colors');
 var server = net.createServer();
 
 var sockets = [];
-var color = ['yellow', 'cyan', 'magenta', 'red', 'green', 'blue', 'rainbow', 'zebra']
+var color = ['zebra', 'rainbow', 'blue', 'red', 'green', 'magenta', 'yellow', 'cyan']
 
 
 server.on('connection', function(socket) {
@@ -30,8 +30,8 @@ server.on('connection', function(socket) {
     
 
         sockets.forEach(function(otherSocket) {
-            otherSocket.write((socket.name + '>> ' + data)[rcolor]);
-
+            otherSocket.write((socket.name + '>> ')[rcolor]);
+            otherSocket.write(data);
 
 
         });
