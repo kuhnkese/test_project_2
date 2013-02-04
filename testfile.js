@@ -1,43 +1,32 @@
-
 var net = require('net');
 var colors = require('colors');
 var server = net.createServer();
 
 var sockets = [];
-
+var color = ['yellow', 'cyan', 'magenta', 'red', 'green', 'blue', 'rainbow', 'zebra']
 
 
 server.on('connection', function(socket) {
 
     socket.name = socket.remoteAddress + ':' + socket.remotePort;
 
-  Array.prototype.random = function (length) {
-               return this[Math.floor((Math.random()*length))];
-         }
-        var color = ['yellow', 'cyan', 'magenta', 'red', 'green', 'blue', 'rainbow', 'zebra']
-        var rcolor = color.random(color.length)
-
-    socket.write(' whatup '.inverse + socket.name.yellow + ' ?\n');
+    Object.prototype.newMethod = "cc";
+    //for loop
+    for (var i=0; i < color.length+7; i++) {
+   
+}
+    var rcolor = color.pop();
+// so this right here is doing it, each time somone logs in it prompts the user in a different color, but it 
+//does not retain this color as they continue chatting
     socket.write(("whatup yo" + socket.name)[rcolor]);
 
-
-// right now i got this random math arrary popping, but i need to just make it a normal arrary
-// i think if i make it a 'shift' arrary, i should be able to get it to change each socket address colour as people
-// get in
-
-
-
-     
-        
 
         console.log("Got a new connection" );
 
         sockets.push(socket);
 
 
-
-
-             socket.on('data', function(data) {
+            socket.on('data', function(data) {
             console.log('Received'.green + data);
     
 
