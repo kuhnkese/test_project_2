@@ -1,5 +1,4 @@
 
-
 var net = require('net');
 var colors = require('colors');
 var server = net.createServer();
@@ -21,6 +20,10 @@ server.on('connection', function(socket) {
     socket.write(' whatup '.inverse + socket.name.yellow + ' ?\n');
     socket.write(("whatup yo" + socket.name)[rcolor]);
 
+
+// right now i got this random math arrary popping, but i need to just make it a normal arrary
+// i think if i make it a 'shift' arrary, i should be able to get it to change each socket address colour as people
+// get in
 
 
 
