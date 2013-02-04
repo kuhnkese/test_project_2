@@ -1,27 +1,37 @@
 
+
 var net = require('net');
 var colors = require('colors');
 var server = net.createServer();
 
-var sockets = []
-var color = ['yellow', 'cyan', 'magenta', 'red', 'green', 'blue', 'rainbow', 'zebra']
+var sockets = [];
 
 
 
 server.on('connection', function(socket) {
 
-    socket.name = socket.remoteAddress + ':' + socket.remotePort
+    socket.name = socket.remoteAddress + ':' + socket.remotePort;
+
+  Array.prototype.random = function (length) {
+               return this[Math.floor((Math.random()*length))];
+         }
+        var color = ['yellow', 'cyan', 'magenta', 'red', 'green', 'blue', 'rainbow', 'zebra']
+        var rcolor = color.random(color.length)
+
     socket.write(' whatup '.inverse + socket.name.yellow + ' ?\n');
-    // so right up here, where it says 'socket.name.yellow' it prints the socket.name in yellow based on the colors
-    // module. How the module works is anytime you put '.yellow' .'cyan' ect right after a variable, it will print
-    // that variable in that color.
+    socket.write(("whatup yo" + socket.name)[rcolor]);
 
 
-        console.log('Got a new connection');
+
+
+     
+        
+
+        console.log("Got a new connection" );
+
         sockets.push(socket);
-// so what im trying to do, i think maybe it should happen around here, is 
-//each time the socket is pushed to another number in the array, it will also grab the next color with the
-// 'shift' array method, when i put something like 'socket.shift(color)' here it crashes
+
+
 
 
              socket.on('data', function(data) {
@@ -29,7 +39,7 @@ server.on('connection', function(socket) {
     
 
         sockets.forEach(function(otherSocket) {
-            otherSocket.write(socket.name.yellow + '>> ' + data );
+            otherSocket.write(socket.name + '>> ' + data );
 
         });
     });
